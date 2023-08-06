@@ -1,0 +1,64 @@
+package com.dao;
+
+import com.entity.MobileStore;
+import com.entity.Item;
+import com.utility.HibernateUtilities;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+public class CreateDetails 
+{
+	public  void create()
+	{
+		  SessionFactory sessionFactory = HibernateUtilities.getSessionFactory();
+		  Session session = sessionFactory.openSession();
+		  session.beginTransaction();
+		  
+		  MobileStore ms = new MobileStore("kingsMobiles","Thirupur","8765678976","kingsmobiles@gmail.com");
+		  MobileStore ms1 = new MobileStore("PoorvikaMobiles","Thottiyam","9878675676","poorvikamobiles@gmail.com");
+		  MobileStore ms2 = new MobileStore("SupremeMobiles","Selam","9854342465","suprememobiles@gmail.com");
+		  MobileStore ms3 = new MobileStore("RKMobiles","Musiri","9089877886","rkmobiles@gmail.com");
+         
+         
+      
+		  Item item1=new Item("OppoA78","250",18,999); 
+	                    Item item2=new Item("RedmiNote12","200",13730);
+	                    Item item3=new Item("VivoV27","60",32999);
+	                    List<Item> items=new ArrayList<Item>(); 
+	                    items.add(item1);
+	                    items.add(item2);
+	                    items.add(item3);
+         
+         
+         
+	         ms.setItems(items);
+	         ms1.setItems(items);
+	         ms2.setItems(items);
+	         ms3.setItems(items);
+	          
+	          item.setMobileStore(ms); 
+	          item1.setMobileStore(ms1);
+	         item2.setMobileStore(ms2);
+	         item3.setMobileStore(ms3);
+	          
+	          
+	          session.save(ms);
+	          session.save(ms1);
+	          session.save(ms2);
+	          session.save(ms3);
+	         
+                            session.save(item);
+	          session.save(item1);
+	          session.save(item2);
+	          session.save(item3);
+		  System.out.println("Inserted Successfully");
+		  session.getTransaction().commit();
+		  session.close();
+		  sessionFactory.close();
+
+         }
+}

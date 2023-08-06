@@ -1,0 +1,48 @@
+package BookMiniProject;
+
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class BookMain {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		Scanner sc=new Scanner(System.in);
+		String s;
+		System.out.println("Book Catalog");
+		System.out.println("1.VIEW");
+		System.out.println("2.ADD BOOK");
+		System.out.println("3.Update BOOK ");
+		System.out.println("4.Delete BOOK");
+		System.out.println("5.Exit");
+		do
+		{
+			System.out.println("enter the choice");
+			int choice=sc.nextInt();
+			switch(choice)
+			{
+				case 1:
+					new BookService().ViewBook();
+					break;
+				case 2:
+					new BookService().insertBook();
+					break;
+				case 3:
+					new BookService().updateBook();
+					break;
+				case 4:
+					new BookService().deleteBook();;
+					break;
+				
+			}
+			System.out.println("do you want to continue");
+			 s=sc.next();
+				
+			}
+			while(s.equals("yes"));
+			
+
+
+		}
+
+	}

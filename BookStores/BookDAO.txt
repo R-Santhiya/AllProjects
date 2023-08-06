@@ -1,0 +1,12 @@
+package BookMiniProject;
+
+import java.sql.SQLException;
+import java.util.List;
+
+public interface BookDAO {
+
+	public List<Book>findAll() throws ClassNotFoundException, SQLException;
+	public void insertBook(Book b) throws ClassNotFoundException, SQLException;
+	public void updateBook(Book b) throws ClassNotFoundException, SQLException;
+	public void deleteBook(Book b) throws ClassNotFoundException, SQLException;
+}

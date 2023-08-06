@@ -1,0 +1,40 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.MobileStore;
+import com.utility.HibernateUtilities;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+
+public class ViewDetails {
+
+	public void view()
+	{
+		SessionFactory sessionFactory = HibernateUtilities.getSessionFactory();
+		  Session session = sessionFactory.openSession();
+		  session.beginTransaction();
+		  
+		  Query<MobileStore> query1=session.createQuery("from MobileStore");
+	         
+	        List<MobileStore> result=query1.list();
+	         
+	         
+	       for(MobileStore ms:result)
+	      {
+	       	System.out.println(ms.getName()); 
+	       	System.out.println(ms.getLocation());
+	       	System.out.println(ms.getMobile_no());
+	       	System.out.println(ms.getEmail());
+
+	         }
+	  
+		  session.getTransaction().commit();
+		  session.close();
+		  sessionFactory.close();
+
+	}
+
+}

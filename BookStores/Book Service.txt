@@ -1,0 +1,68 @@
+package BookMiniProject;
+
+import java.util.Scanner;
+import java.sql.SQLException;
+import java.util.List;
+
+public class BookService {
+
+	public void ViewBook() throws ClassNotFoundException, SQLException
+	{
+		List<Book>list=new BookDAOImplementation().findAll();
+		for(Book b:list)
+		{
+			System.out.println(b);
+		}
+		
+	}
+	public void insertBook() throws ClassNotFoundException, SQLException
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the BookId");
+		int BookId=sc.nextInt();
+		System.out.println("enter the BookName");
+		String  BookName=sc.next();
+		System.out.println("enter the BookAuthor");
+		String BookAuthor=sc.next();
+                                   System.out.println("enter the BookPrice");
+		int BookPrice=sc.nextInt();
+                		Book b=new Book();
+		b.setBookId(BookId);
+		b.setBookName(BookName);
+		b.setBookAuthor(BookAuthor);
+		b.setBookPrice(BookPrice);
+		new BookDAOImplementation().insertBook(b);
+	}
+	
+	public void updateBook() throws ClassNotFoundException, SQLException
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the BookName");
+		String BookName=sc.next();
+		System.out.println("enter the BookAuthor");
+		String BookAuthor=sc.next();
+                                   System.out.println("enter the BookPrice");
+		int BookPrice=sc.nextInt();
+		System.out.println("enter the BookId");
+		int BookId=sc.nextInt();
+		Book b=new Book();
+		b.setBookName(BookName);
+		b.setBookAuthor(BookAuthor);
+                                   b.setBookPrice(BookPrice);
+		b.setBookId(BookId);
+		new BookDAOImplementation().updateBook(b);
+	}
+	
+	
+	public void deleteBook() throws ClassNotFoundException, SQLException
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the BookId");
+		int BookId=sc.nextInt();
+		
+		Book b=new Book(); 
+		b.setBookId(BookId);
+			
+		new BookDAOImplementation().deleteBook(b);
+	}
+}

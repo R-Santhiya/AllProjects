@@ -1,0 +1,36 @@
+package com.dao;
+
+import java.util.Scanner;
+
+import com.entity.MobileStore;
+import com.utility.HibernateUtilities;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+public class UpdateDetails {
+
+	public void update()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the ID number");
+		int id_no=sc.nextInt();
+		
+		SessionFactory sessionFactory = HibernateUtilities.getSessionFactory();	
+		  Session session = sessionFactory.openSession();
+		  session.beginTransaction();
+		  
+		  MobileStore ms = (MobileStore)session.get(MobileStore.class,id_no);
+		  ms.setName("Chennai Mobiles");
+		  ms.setLocation("Trichy");
+		  ms.setMobile_no("7085367489");
+		  ms.setEmail("chennaimobiles@gmail.com");
+		  
+		  
+		  System.out.println("Updated Successfully");
+		  session.getTransaction().commit();
+		  sessionFactory.close();
+
+	}
+
+}
